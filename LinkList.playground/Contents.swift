@@ -112,12 +112,33 @@ public class LinkedList<T> {
         }
     }
     
+    
+    public func remove(node: Node<T>) -> T {
+        let prev = node.previous
+        let next = node.next
+        
+        if let prev = prev {
+            prev.next = next
+        } else {
+        head = next
+        }
+        next?.previous = prev
+        node.previous = nil
+        node.next = nil
+        return node.value
+    }
+    
+    
+    public func removeAt(_ index: Int) -> T {
+        let nodeToRemove = node(atIndex: index)
+        return remove(node: nodeToRemove)
+    }
+    
 }
 
 
 
 let list = LinkedList<String>()
-
 
 
 
